@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 .gg-sun {
   box-sizing: border-box;
   position: relative;
@@ -72,8 +77,7 @@ header {
 header .navbar-brand {
   display: flex;
   gap: 10px;
-  width: 10%;
-  height: 10%;
+  width: 5%;
   align-items: center;
 }
 header .navbar-brand img {
@@ -87,10 +91,6 @@ header .navbar-collapse {
   justify-content: end;
   gap: 10px;
 }
-header .navbar-collapse .dropdown-menu .list_class {
-  list-style: none;
-  padding-left: 35px;
-}
 header .navbar-collapse .search {
   position: relative;
 }
@@ -100,6 +100,13 @@ header .navbar-collapse .search .btn {
   right: 0;
 }
 header .navbar-collapse .cart {
+  padding: 3px 10px;
+  border-radius: 10px;
+  background: red;
+  border: 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+header .navbar-collapse .cart .info_cart {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -119,8 +126,13 @@ header .navbar-collapse .icon_theme i.active {
   z-index: 2;
 }
 
+#carousel {
+  margin: 20px 0;
+}
 #carousel .item {
   height: 30vh;
+  width: 60%;
+  margin: auto;
 }
 #carousel .item img {
   width: 100%;
@@ -135,11 +147,71 @@ header .navbar-collapse .icon_theme i.active {
   background-color: rgb(243, 138, 212);
 }
 
+#product #filter_pet .filter_content {
+  background-color: pink;
+  border-radius: 15px;
+  padding-bottom: 10px;
+}
+#product #filter_pet .filter_content > li {
+  padding-top: 15px;
+}
+#product #filter_pet .filter_content .title {
+  padding: 5px 30px;
+  font-size: 18px;
+  font-weight: 600;
+}
+#product #filter_pet .filter_content .filter_item {
+  margin: 0 3rem;
+}
+#product #filter_pet .filter_content .filter_item > li:not(:has(> div)) {
+  padding: 10px 0 10px 4rem;
+}
+#product #filter_more {
+  display: flex;
+  justify-content: end;
+}
+#product #filter_more select {
+  border-radius: 15px;
+  padding: 10px 20px;
+  width: 23%;
+}
+#product .col-3 {
+  padding: 10px 10px;
+}
 #product .pet_item {
-  margin: 0 16px;
+  position: relative;
   padding: 20px;
-  width: 30%;
+  border: 1px solid;
+  border-radius: 15px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: pink;
 }
 #product .pet_item img {
   width: 100%;
+}
+#product .pet_item .pet_info h4 {
+  padding: 20px 0;
+  font-size: 20px;
+}
+#product .pet_item span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
+  padding: 3px 3px 10px 10px;
+  line-height: 15px;
+  background-color: red;
+  color: yellow;
+  border-radius: 0 0 0 16px;
+}
+#product .pet:nth-child(n+5) {
+  display: none;
+}
+.btn-style, #product .pet_item .buyBtn, #product #showMore {
+  padding: 5px 15px;
+  font-size: 20px;
+  background: red;
+  border-radius: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  color: yellow;
 }/*# sourceMappingURL=main.css.map */
