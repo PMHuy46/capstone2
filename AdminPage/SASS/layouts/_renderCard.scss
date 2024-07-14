@@ -1,0 +1,26 @@
+.card {
+  border-radius: 15px;
+  background-color: rgba(95, 158, 160, 0.417);
+  height: 100%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+  .card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+  button#xoa {
+    background-color: rgba(255, 0, 0, 0.595);
+    width: 60px;
+    font-weight: 700;
+    text-align: center;
+  }
+  button#sua {
+    background-color: rgba(255, 166, 0, 0.493);
+    width: 60px;
+    font-weight: 700;
+    text-align: center;
+  }
+}
