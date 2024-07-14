@@ -1,0 +1,58 @@
+.formThuCung {
+  .form {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .mb-3 {
+      flex: calc(33.333% - 20px);
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    input,
+    select {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: border-color 0.3s;
+
+      &:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+    }
+
+    input::placeholder {
+      color: #999;
+    }
+
+    .form-select-lg {
+      padding: 10px;
+    }
+  }
+
+  .button {
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-top: 10px;
+
+    button {
+      text-align: center;
+      color: black;
+      border-radius: 10px;
+      padding: 10px 25px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-block;
+      box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+        7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+      outline: none;
+    }
+  }
+}
