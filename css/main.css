@@ -203,6 +203,11 @@ header .navbar-collapse .icon_theme i.active {
   font-size: 20px;
   height: 50px;
 }
+#product .pet_item .pet_info div {
+  display: flex;
+  justify-content: space-between;
+  height: 35px;
+}
 #product .pet_item .quangCao {
   position: absolute;
   top: 20px;
