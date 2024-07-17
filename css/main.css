@@ -13,6 +13,10 @@ a {
   color: white;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .gg-sun {
   box-sizing: border-box;
   position: relative;
@@ -77,6 +81,11 @@ a {
 
 header {
   font-weight: 600;
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  top: 0;
+  background-color: #590010;
 }
 header .navbar-brand {
   display: flex;
@@ -138,7 +147,7 @@ header .navbar-collapse .icon_theme i.active {
 }
 
 #carousel {
-  margin: 20px 0;
+  margin-top: 100px;
 }
 #carousel .item {
   height: 30vh;
@@ -162,6 +171,12 @@ header .navbar-collapse .icon_theme i.active {
   background-color: pink;
   border-radius: 15px;
   padding-bottom: 10px;
+}
+#product #filter_pet .filter_content.fixed {
+  position: fixed;
+  top: 110px;
+  z-index: 1000;
+  width: 310px;
 }
 #product #filter_pet .filter_content > li {
   padding-top: 10px;
@@ -228,7 +243,7 @@ header .navbar-collapse .icon_theme i.active {
   color: yellow;
   border-radius: 0 0 0 16px;
 }
-#product .pet:nth-child(n+5) {
+#product .pet:nth-child(n+9) {
   display: none;
 }
 .btn-style, #product #filter_pet .filter_content .resetFilter, #product .pet_item .buyBtn, #product #showMore {

@@ -2,16 +2,18 @@ const sun = document.querySelector('.gg-sun');
 const moon = document.querySelector('.gg-moon');
 const body = document.querySelector('body');
 
-sun.addEventListener('click', function () {
-    this.classList.toggle('active');
-    moon.classList.toggle('active');
-    body.classList.toggle('bg-dark');
-});
-moon.addEventListener('click', function () {
-    sun.classList.toggle('active');
-    this.classList.toggle('active');
-    body.classList.toggle('bg-dark');
-});
+// sun.addEventListener('click', function () {
+//     this.classList.toggle('active');
+//     moon.classList.toggle('active');
+//     body.classList.toggle('bg-dark');
+// });
+// moon.addEventListener('click', function () {
+//     sun.classList.toggle('active');
+//     this.classList.toggle('active');
+//     body.classList.toggle('bg-dark');
+// });
+
+
 
 let DSMua = []
 let count = 0
@@ -267,5 +269,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 renderDSPet(DSfilter)
             })
         });
+    });
+
+    window.addEventListener('scroll', function () {
+        const menu = document.getElementById('menu');
+        const ktra = document.getElementById('filter_pet');
+        const rect = ktra.getBoundingClientRect();
+        
+        // Kiểm tra xem menu đã cách mép trên 10px chưa
+        if (rect.top <= 120) {
+            menu.classList.add('fixed');
+        } else {
+            menu.classList.remove('fixed');
+        }
     });
 });
