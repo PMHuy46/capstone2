@@ -1,4 +1,3 @@
-
 const sun = document.querySelector('.gg-sun');
 const moon = document.querySelector('.gg-moon');
 const body = document.querySelector('body');
@@ -14,6 +13,11 @@ moon.addEventListener('click', function () {
     body.classList.toggle('bg-dark');
 });
 
+let DSMua = []
+let count = 0
+let priceBill = 0
+let DSfilter = []
+
 //get and render ds từ 
 async function getValueOnMock() {
     try {
@@ -21,12 +25,16 @@ async function getValueOnMock() {
             method: "GET",
             url: `https://6680c8e056c2c76b495cbc78.mockapi.io/product`,
         })
+        DSfilter = result.data
         return result.data
     } catch (error) {
         console.log(error)
     }
-
 }
+
+getValueOnMock().then(() => {
+    renderDSPet(DSfilter)
+})
 
 function renderDSPet(arr) {
     let content = ""
@@ -72,21 +80,6 @@ function renderDSPet(arr) {
     }
     document.querySelector(`.list_pet`).innerHTML = content
 }
-
-async function inDSPet() {
-    try {
-        const data = await getValueOnMock();
-        renderDSPet(data)
-    } catch {
-        console.log(error)
-    }
-}
-
-inDSPet()
-
-let DSMua = []
-let count = 0
-let priceBill = 0
 
 //btn buy
 function muaSP(idSP, price) {
@@ -199,70 +192,80 @@ const updateAPI = async () => {
     } catch (error) {
         console.log(error)
     }
-    getValueOnMock()
+    getValueOnMock().then(() => {
+        renderDSPet(DSfilter)
+    })
     DSMua = []
     document.querySelector(`#soLuongDaChon`).innerHTML = `0`
     document.querySelector(`#billInfo`).innerHTML = ``
     document.querySelector(`#tongTien`).innerHTML = `0`
 }
-
 document.querySelector(`#thanhToanBill`).onclick = updateAPI;
 
 // filter
-//filter theo từ
+//filter theo key
 async function filterByOption(value, type) {
-    let valueFind = removeVietnameseTones(value.toLowerCase().trim()); // giá trị của các type
-    let typeFind = removeVietnameseTones(type.toLowerCase().trim()); // tên các type
-    let ktra = typeFind.split(" ")//2 tên của type
-    console.log(ktra.length)
+    let valueFind = removeVietnameseTones(value.toLowerCase().trim()); 
+    let typeFind = removeVietnameseTones(type.toLowerCase().trim()); 
+    let ktra = typeFind.split(" ")
+
     let arrFiltered = []
     try {
         const data = await getValueOnMock();
-        console.log(data)   
-        if (ktra.length == 1) { //(type, bestsale)
+        if (ktra.length == 1) { 
             arrFiltered = data.filter(item => {
-                //lấy ra giá trị của type
                 let typeValue = removeVietnameseTones(item[`${ktra[0]}`].toLowerCase().trim());
-                //so sánh giá trị 
                 return typeValue.includes(valueFind)
             })
         } else {
             let arrType = data.filter(item => {
-                //lấy ra giá trị của type bỏ dấu
                 let typeValue = removeVietnameseTones(item.type.toLowerCase().trim());
-                //so sánh giá trị 
                 return typeValue.includes(ktra[0])
             })
             arrFiltered = arrType.filter(item => {
                 let typeValue = removeVietnameseTones(item[`${ktra[1]}`].toLowerCase().trim());
-                console.log(typeValue)
                 return typeValue.includes(valueFind)
             })
         }
-        console.log(arrFiltered)
-        renderDSPet(arrFiltered)
+        DSfilter = arrFiltered
     } catch {
         console.log("error")
     }
 }
 
-// add event click cho thẻ a
+//reset filter
+document.querySelector(`.resetFilter`).onclick = function () {
+    getValueOnMock().then(()=>{
+        renderDSPet(DSfilter)
+    })
+}
+// filter theo giá
+function sapXepDS(x, arr = DSfilter) {
+    let arr1 = arr.sort((a, b) => a.price * x - b.price * x)
+    renderDSPet(arr1)
+}
+
+// add event click cho thẻ 
 document.addEventListener("DOMContentLoaded", function () {
     let links = document.querySelectorAll(".filterByValue");
+    let selectFil = document.querySelectorAll(".form-select");
 
+    selectFil.forEach(function (option) {
+        option.addEventListener("click", function (event) {
+            event.preventDefault();
+            let { value } = option
+            sapXepDS(value)
+        })
+    })
     // Thêm sự kiện onclick cho từng thẻ <a>
     links.forEach(function (link) {
         link.addEventListener("click", function (event) {
-            event.preventDefault(); // Ngăn chặn hành động mặc định khi click vào thẻ <a>
+            event.preventDefault();
 
             let { text, title } = link;
-            console.log(text, title)
-            filterByOption(text, title)
+            filterByOption(text, title).then(() => {
+                renderDSPet(DSfilter)
+            })
         });
     });
 });
-
-//reset filter
-document.querySelector(`.resetFilter`).onclick=function (){
-    inDSPet()
-}
