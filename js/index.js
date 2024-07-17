@@ -17,17 +17,16 @@ moon.addEventListener('click', function () {
 //get and render ds từ 
 async function getValueOnMock() {
     try {
-        let resolve = await axios({
+        let result = await axios({
             method: "GET",
             url: `https://6680c8e056c2c76b495cbc78.mockapi.io/product`,
         })
-        renderDSPet(resolve.data)
+        return result.data
     } catch (error) {
         console.log(error)
     }
 
 }
-getValueOnMock()
 
 function renderDSPet(arr) {
     let content = ""
@@ -73,6 +72,17 @@ function renderDSPet(arr) {
     }
     document.querySelector(`.list_pet`).innerHTML = content
 }
+
+async function inDSPet() {
+    try {
+        const data = await getValueOnMock();
+        renderDSPet(data)
+    } catch {
+        console.log(error)
+    }
+}
+
+inDSPet()
 
 let DSMua = []
 let count = 0
@@ -190,11 +200,69 @@ const updateAPI = async () => {
         console.log(error)
     }
     getValueOnMock()
-    DSMua=[]
-    document.querySelector(`#soLuongDaChon`).innerHTML =`0`
-    document.querySelector(`#billInfo`).innerHTML =``
+    DSMua = []
+    document.querySelector(`#soLuongDaChon`).innerHTML = `0`
+    document.querySelector(`#billInfo`).innerHTML = ``
     document.querySelector(`#tongTien`).innerHTML = `0`
 }
 
 document.querySelector(`#thanhToanBill`).onclick = updateAPI;
 
+// filter
+//filter theo từ
+async function filterByOption(value, type) {
+    let valueFind = removeVietnameseTones(value.toLowerCase().trim()); // giá trị của các type
+    let typeFind = removeVietnameseTones(type.toLowerCase().trim()); // tên các type
+    let ktra = typeFind.split(" ")//2 tên của type
+    console.log(ktra.length)
+    let arrFiltered = []
+    try {
+        const data = await getValueOnMock();
+        console.log(data)   
+        if (ktra.length == 1) { //(type, bestsale)
+            arrFiltered = data.filter(item => {
+                //lấy ra giá trị của type
+                let typeValue = removeVietnameseTones(item[`${ktra[0]}`].toLowerCase().trim());
+                //so sánh giá trị 
+                return typeValue.includes(valueFind)
+            })
+        } else {
+            let arrType = data.filter(item => {
+                //lấy ra giá trị của type bỏ dấu
+                let typeValue = removeVietnameseTones(item.type.toLowerCase().trim());
+                //so sánh giá trị 
+                return typeValue.includes(ktra[0])
+            })
+            arrFiltered = arrType.filter(item => {
+                let typeValue = removeVietnameseTones(item[`${ktra[1]}`].toLowerCase().trim());
+                console.log(typeValue)
+                return typeValue.includes(valueFind)
+            })
+        }
+        console.log(arrFiltered)
+        renderDSPet(arrFiltered)
+    } catch {
+        console.log("error")
+    }
+}
+
+// add event click cho thẻ a
+document.addEventListener("DOMContentLoaded", function () {
+    let links = document.querySelectorAll(".filterByValue");
+
+    // Thêm sự kiện onclick cho từng thẻ <a>
+    links.forEach(function (link) {
+        link.addEventListener("click", function (event) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định khi click vào thẻ <a>
+
+            let { text, title } = link;
+            console.log(text, title)
+            filterByOption(text, title)
+        });
+    });
+});
+
+//reset filter
+document.querySelector(`.resetFilter`).onclick=function (){
+    inDSPet()
+}

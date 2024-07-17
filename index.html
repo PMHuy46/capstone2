@@ -100,12 +100,12 @@
                     <ul class="filter_content">
                         <li>
                             <div class="title">
-                                Best Saler
+                                <a href="" class="filterByValue" title="bestSale">Best Saler</a>
                             </div>
                         </li>
                         <li>
                             <div class="title">
-                                Cún
+                                <a href="" class="filterByValue" title="type">Chó</a>
                             </div>
                         </li>
                         <li>
@@ -115,32 +115,34 @@
                                         Chủng tộc
                                     </div>
                                 </li>
-                                <li>Samoyed</li>
-                                <li>Bul</li>
-                                <li>Beagel</li>
-                                <li>Bul</li>
+                                <li><a href="" class="filterByValue" title="Chó species">Samoyed</a></li>
+                                <li><a href="" class="filterByValue" title="Chó species">Pul</a></li>
+                                <li><a href="" class="filterByValue" title="Chó species">Beagel</a></li>
                                 <li>
                                     <div class="title">
                                         Quốc tịch
                                     </div>
                                 </li>
-                                <li>Pháp</li>
-                                <li>Không xác định</li>
+                                <li><a href="" class="filterByValue" title="Chó origin">Pháp</a></li> <!--origin-->
+                                <li><a href="" class="filterByValue" title="Chó origin">Other</a></li>
                             </ul>
                         </li>
-                        <li class="title">Mèo</li>
+                        <li class="title">
+                            <a href="" class="filterByValue" title="type">Mèo</a></li>
                         <li>
                             <ul class="filter_item">
                                 <li>
                                     <div class="title">Chủng tộc</div>
                                 </li>
-                                <li>Chân ngắn</li>
+                                <li><a href="" class="filterByValue" title="Mèo species">Chân ngắn</a></li>
                                 <li>
                                     <div class="title">Nơi sản xuất</div>
                                 </li>
-                                <li>Anh</li>
+                                <li><a href="" class="filterByValue" title="Mèo origin">Anh</a></li>
+                                <li><a href="" class="filterByValue" title="Mèo origin">Other</a></li>
                             </ul>
                         </li>
+                        <li><div class="d-flex justify-content-end mx-3"><Button class="resetFilter">Xóa lọc</Button></div></li>
                     </ul>
                 </div>
                 <div class="col-9 " id="info_pet">
@@ -153,7 +155,7 @@
                         </select>
                     </div>
                     <div class="list_pet row">
-                       <!-- danh sách các sp có trên API  -->
+                        <!-- danh sách các sp có trên API  -->
                     </div>
                     <div class="col-12 text-center my-5">
                         <div class="button">
@@ -237,7 +239,7 @@
             </div>
         </div>
     </footer> -->
-    
+
     <!-- Modal -->
     <div class="modal fade" id="yourBill" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 32%;" role="document">
@@ -256,7 +258,7 @@
                             </tr>
                         </thead>
                         <tbody id="billInfo">
-                         <!-- thông tin hóa đơn -->
+                            <!-- thông tin hóa đơn -->
                         </tbody>
                         <tfoot>
                             <tr>
@@ -269,13 +271,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-danger" id="thanhToanBill" data-bs-dismiss="modal">Thanh toán</button>
+                    <button type="button" class="btn btn-danger" id="thanhToanBill" data-bs-dismiss="modal">Thanh
+                        toán</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <button onclick="confirmAction()"> click</button>
+   
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -322,6 +325,7 @@
         });
     </script>
 
+    <script src="./js/util.js"></script>
     <script src="./js/index.js"></script>
 </body>
 
