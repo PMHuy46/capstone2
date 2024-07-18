@@ -272,8 +272,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     window.addEventListener('scroll', function () {
-        const menu = document.getElementById('menu');
-        const ktra = document.getElementById('filter_pet');
+        const menu = document.querySelector('.filter_content');
+        const ktra = document.querySelector('#filter_pet');
         const rect = ktra.getBoundingClientRect();
         
         // Kiểm tra xem menu đã cách mép trên 10px chưa
